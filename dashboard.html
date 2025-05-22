@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thomas Askharoun | Personal Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="favicon.png">
+</head>
+<body class="dark-mode">
+    <div class="dashboard-container">
+        <!-- Personal Notice Banner -->
+        <div class="notice-banner">
+            <i class="fas fa-exclamation-circle"></i>
+            <div>
+                <h3>Personal Dashboard</h3>
+                <p>This is Thomas Askharoun's personal electrical engineering dashboard. If you're not Thomas, you're welcome to explore, but please note this is a personal space.</p>
+            </div>
+            <button class="close-banner">&times;</button>
+        </div>
+        <script>
+          document.addEventListener('DOMContentLoaded', () => {
+            const banner = document.querySelector('.notice-banner');
+            const btn   = banner.querySelector('.close-banner');
+        
+            btn.addEventListener('click', () => {
+              // simply hide it:
+              banner.style.display = 'none';
+        
+              // if you prefer to remove it from the DOM:
+              // banner.remove();
+            });
+          });
+        </script>
+
+        <!-- Header -->
+        <header class="dashboard-header">
+            <h1>askharoun.dev<sup>personal</sup></h1>
+            <div class="header-actions">
+                <button id="theme-toggle" class="btn btn-icon">
+                </button>
+                <div class="avatar-container">
+                    <div class="avatar">
+                        <img id="avatar-img" src="https://via.placeholder.com/96" alt="Profile">
+                        <span class="avatar-fallback">T</span>
+                    </div>
+                    <button id="upload-avatar" class="avatar-upload-btn">
+                        <i class="fas fa-camera"></i>
+                    </button>
+                    <input type="file" id="avatar-input" accept="image/*" hidden>
+                </div>
+                <button id="logout-btn" class="btn btn-ghost">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Exit
+                </button>
+            </div>
+        </header>
+
+        <!-- Tabs -->
+        <div class="tabs">
+          <button class="tab-btn active" data-tab="dashboard">Dashboard</button>
+          <button class="tab-btn" data-tab="classes">Classes</button>
+          <button class="tab-btn" data-tab="circuits">Circuits</button>
+          <button class="tab-btn" data-tab="vocab">Vocabulary</button>
+          <button class="tab-btn" data-tab="chatgpt">ChatGPT</button>
+          <button class="tab-btn" data-tab="edraw">Edraw.ai</button>
+        </div>
+
+        <!-- Tab Content -->
+        <div class="tab-content">
+            <!-- Dashboard Tab -->
+            <div id="dashboard" class="tab-pane active">
+                <div class="grid-container">
+                    <!-- Quick Notes -->
+                    <div class="card span-2">
+                        <div class="card-header">
+                            <h2>Quick Notes</h2>
+                            <p class="card-description">Jot down your electrical engineering notes</p>
+                        </div>
+                        <div class="card-content">
+                            <textarea id="quick-notes" placeholder="Write your circuit notes, calculations, or ideas here..."></textarea>
+                        </div>
+                        <div class="card-footer">
+                            <button id="save-notes" class="btn btn-primary">Save Notes</button>
+                        </div>
+                    </div>
+
+                    <!-- Popular Currently -->
+                    <div class="card">
+                      <div class="card-header">
+                        <h2>Popular Currently</h2>
+                        <p class="card-description">Today's trending electrical engineering resources</p>
+                      </div>
+                      <div class="card-content">
+                        <div id="popular-currently" class="popular-currently">
+                          <div class="popular-currently-header">
+                            <h3>Popular Currently</h3>
+                            <i id="refresh-popular" class="fas fa-sync-alt refresh-icon"></i>
+                          </div>
+                          <div class="popular-item" data-url="https://spectrum.ieee.org/">
+                            <div class="popular-item-title">New Advances in Power Electronics</div>
+                            <div class="popular-item-source">IEEE Spectrum</div>
+                          </div>
+                          <div class="popular-item" data-url="https://www.allaboutcircuits.com/">
+                            <div class="popular-item-title">Circuit Design Optimization Techniques</div>
+                            <div class="popular-item-source">All About Circuits</div>
+                          </div>
+                          <div class="popular-item" data-url="https://www.embedded.com/">
+                            <div class="popular-item-title">Microcontroller Programming Best Practices</div>
+                            <div class="popular-item-source">Embedded.com</div>
+                          </div>
+                          <div class="popular-item" data-url="https://www.electronicsweekly.com/">
+                            <div class="popular-item-title">Energy Efficient Circuit Design</div>
+                            <div class="popular-item-source">Electronics Weekly</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Electrical Engineering Resources -->
+                    <div class="card">
+                      <div class="card-header">
+                        <h2>Electrical Engineering Resources</h2>
+                        <p class="card-description">Helpful resources for your projects</p>
+                        <button class="edit-section-btn"><i class="fas fa-edit"></i></button>
+                      </div>
+                      <div class="card-content">
+                        <div class="resource-list">
+                          <div class="resource-item">
+                            <div class="resource-title">NEC Code Handbook</div>
+                            <div class="resource-description">National Electrical Code reference</div>
+                            <a href="https://www.nfpa.org/codes-and-standards/all-codes-and-standards/list-of-codes-and-standards/detail?code=70" target="_blank" class="resource-link">Visit Site</a>
+                          </div>
+                          <div class="resource-item">
+                            <div class="resource-title">Electrical Engineering Portal</div>
+                            <div class="resource-description">Articles and resources for electrical engineers</div>
+                            <a href="https://electrical-engineering-portal.com/" target="_blank" class="resource-link">Visit Site</a>
+                          </div>
+                          <div class="resource-item">
+                            <div class="resource-title">All About Circuits</div>
+                            <div class="resource-description">Tutorials and forums for electrical engineers</div>
+                            <a href="https://www.allaboutcircuits.com/" target="_blank" class="resource-link">Visit Site</a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Classes Tab -->
+            <div id="classes" class="tab-pane">
+                <div class="grid-container">
+                    <div id="degree-progress" class="card customizable-section span-2">
+                      <div class="card-header">
+                        <h2>Degree Progress</h2>
+                        <p class="card-description">Track your progress toward graduation</p>
+                        <button class="edit-section-btn"><i class="fas fa-edit"></i></button>
+                      </div>
+                      <div class="card-content">
+                        <div class="section-content">
+                          <div class="form-group">
+                            <label for="credits-earned">Credits Earned</label>
+                            <input type="number" id="credits-earned" value="78" min="0">
+                          </div>
+                          <div class="form-group">
+                            <label for="credits-remaining">Credits Remaining</label>
+                            <input type="number" id="credits-remaining" value="42" min="0">
+                          </div>
+                          <div class="form-group">
+                            <label for="current-gpa">GPA</label>
+                            <input type="number" id="current-gpa" value="3.7" min="0" max="4.0" step="0.1">
+                          </div>
+                          <div class="progress-container">
+                            <div class="progress-bar">
+                              <div class="progress-fill" style="width: 65%;"></div>
+                            </div>
+                            <div class="progress-stats">
+                              <div class="stat">
+                                <span id="progress-percentage" class="stat-value">65%</span>
+                                <span class="stat-label">Complete</span>
+                              </div>
+                              <div class="stat">
+                                <span id="credits-earned-display" class="stat-value">78</span>
+                                <span class="stat-label">Credits Earned</span>
+                              </div>
+                              <div class="stat">
+                                <span id="credits-remaining-display" class="stat-value">42</span>
+                                <span class="stat-label">Credits Remaining</span>
+                              </div>
+                              <div class="stat">
+                                <span id="gpa-display" class="stat-value">3.7</span>
+                                <span class="stat-label">GPA</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card-footer">
+                        <button id="update-progress" class="btn btn-primary">Update Progress</button>
+                      </div>
+                    </div>
+
+                    <div class="card span-2">
+                        <div class="card-header">
+                            <h2>Course Planner</h2>
+                            <p class="card-description">Plan your electrical engineering courses</p>
+                        </div>
+                        <div class="card-content">
+                            <div class="course-tabs">
+                                <button class="course-tab active" data-course-tab="completed">Completed</button>
+                                <button class="course-tab" data-course-tab="current">Current</button>
+                                <button class="course-tab" data-course-tab="planned">Planned</button>
+                                <button class="course-tab" data-course-tab="all">All Courses</button>
+                            </div>
+                            
+                            <div class="course-tab-content">
+                                <!-- Completed Courses -->
+                                <div id="completed-courses" class="course-list active">
+                                    <div class="course-item" data-id="1">
+                                        <div class="course-code">EE 101</div>
+                                        <div class="course-details">
+                                            <div class="course-title">Introduction to Electrical Engineering</div>
+                                            <div class="course-meta">
+                                                <span class="course-credits">3 credits</span>
+                                                <span class="course-grade">A</span>
+                                            </div>
+                                        </div>
+                                        <div class="item-actions">
+                                            <button class="edit-btn"><i class="fas fa-edit"></i></button>
+                                            <button class="delete-btn"><i class="fas fa-trash-alt"></i></button>
+                                        </div>
+                                    </div>
+                                    <div class="course-item" data-id="2">
+                                        <div class="course-code">EE 201</div>
+                                        <div class="course-details">
+                                            <div class="course-title">Circuit Theory I</div>
+                                            <div class="course-meta">
+                                                <span class="course-credits">4 credits</span>
+                                                <span class="course-grade">A-</span>
+                                            </div>
+                                        </div>
+                                        <div class="item-actions">
+                                            <button class="edit-btn"><i class="fas fa-edit"></i></button>
+                                            <button class="delete-btn"><i class="fas fa-trash-alt"></i></button>
+                                        </div>
+                                    </div>
+                                    <div class="course-item" data-id="3">
+                                        <div class="course-code">EE 202</div>
+                                        <div class="course-details">
+                                            <div class="course-title">Circuit Theory II</div>
+                                            <div class="course-meta">
+                                                <span class="course-credits">4 credits</span>
+                                                <span class="course-grade">B+</span>
+                                            </div>
+                                        </div>
+                                        <div class="item-actions">
+                                            <button class="edit-btn"><i class="fas fa-edit"></i></button>
+                                            <button class="delete-btn"><i class="fas fa-trash-alt"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Current Courses -->
+                                <div id="current-courses" class="course-list">
+                                    <div class="course-item" data-id="4">
+                                        <div class="course-code">EE 301</div>
+                                        <div class="course-details">
+                                            <div class="course-title">Signals and Systems</div>
+                                            <div class="course-meta">
+                                                <span class="course-credits">3 credits</span>
+                                                <span class="course-progress">In Progress</span>
+                                            </div>
+                                        </div>
+                                        <div class="item-actions">
+                                            <button class="edit-btn"><i class="fas fa-edit"></i></button>
+                                            <button class="delete-btn"><i class="fas fa-trash-alt"></i></button>
+                                        </div>
+                                    </div>
+                                    <div class="course-item" data-id="5">
+                                        <div class="course-code">EE 332</div>
+                                        <div class="course-details">
+                                            <div class="course-title">Electronics I</div>
+                                            <div class="course-meta">
+                                                <span class="course-credits">4 credits</span>
+                                                <span class="course-progress">In Progress</span>
+                                            </div>
+                                        </div>
+                                        <div class="item-actions">
+                                            <button class="edit-btn"><i class="fas fa-edit"></i></button>
+                                            <button class="delete-btn"><i class="fas fa-trash-alt"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Planned Courses -->
+                                <div id="planned-courses" class="course-list">
+                                    <div class="course-item" data-id="6">
+                                        <div class="course-code">EE 333</div>
+                                        <div class="course-details">
+                                            <div class="course-title">Electronics II</div>
+                                            <div class="course-meta">
+                                                <span class="course-credits">4 credits</span>
+                                                <span class="course-semester">Next Semester</span>
+                                            </div>
+                                        </div>
+                                        <div class="item-actions">
+                                            <button class="edit-btn"><i class="fas fa-edit"></i></button>
+                                            <button class="delete-btn"><i class="fas fa-trash-alt"></i></button>
+                                        </div>
+                                    </div>
+                                    <div class="course-item" data-id="7">
+                                        <div class="course-code">EE 401</div>
+                                        <div class="course-details">
+                                            <div class="course-title">Control Systems</div>
+                                            <div class="course-meta">
+                                                <span class="course-credits">3 credits</span>
+                                                <span class="course-semester">Next Semester</span>
+                                            </div>
+                                        </div>
+                                        <div class="item-actions">
+                                            <button class="edit-btn"><i class="fas fa-edit"></i></button>
+                                            <button class="delete-btn"><i class="fas fa-trash-alt"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- All Courses -->
+                                <div id="all-courses" class="course-list">
+                                    <!-- This will be populated by JavaScript -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <button id="add-course-btn" class="btn btn-primary">
+                                <i class="fas fa-plus-circle"></i>
+                                Add Course
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="degree-requirements" class="card customizable-section">
+                      <div class="card-header">
+                        <h2>Degree Requirements</h2>
+                        <p class="card-description">Track your progress toward graduation</p>
+                        <button class="edit-section-btn"><i class="fas fa-edit"></i></button>
+                      </div>
+                      <div class="card-content">
+                        <div class="section-content">
+                          <div class="requirement-list">
+                            <div class="requirement-category">
+                              <div class="requirement-header">
+                                <h3>Core Requirements</h3>
+                                <span class="requirement-progress">15/24 credits</span>
+                              </div>
+                              <div class="requirement-bar">
+                                <div class="requirement-fill" style="width: 62.5%;"></div>
+                              </div>
+                            </div>
+                            <div class="requirement-category">
+                              <div class="requirement-header">
+                                <h3>Math & Science</h3>
+                                <span class="requirement-progress">20/32 credits</span>
+                              </div>
+                              <div class="requirement-bar">
+                                <div class="requirement-fill" style="width: 62.5%;"></div>
+                              </div>
+                            </div>
+                            <div class="requirement-category">
+                              <div class="requirement-header">
+                                <h3>Technical Electives</h3>
+                                <span class="requirement-progress">9/18 credits</span>
+                              </div>
+                              <div class="requirement-bar">
+                                <div class="requirement-fill" style="width: 50%;"></div>
+                              </div>
+                            </div>
+                            <div class="requirement-category">
+                              <div class="requirement-header">
+                                <h3>General Education</h3>
+                                <span class="requirement-progress">18/24 credits</span>
+                              </div>
+                              <div class="requirement-bar">
+                                <div class="requirement-fill" style="width: 75%;"></div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div id="graduation-plan" class="card customizable-section">
+                      <div class="card-header">
+                        <h2>Graduation Plan</h2>
+                        <p class="card-description">Your path to graduation</p>
+                        <button class="edit-section-btn"><i class="fas fa-edit"></i></button>
+                      </div>
+                      <div class="card-content">
+                        <div class="section-content">
+                          <div class="timeline">
+                            <div class="timeline-item">
+                              <div class="timeline-marker completed"></div>
+                              <div class="timeline-content">
+                                <h3>Freshman Year</h3>
+                                <p>Completed core math and intro to EE courses</p>
+                                <span class="timeline-date">2022-2023</span>
+                              </div>
+                            </div>
+                            <div class="timeline-item">
+                              <div class="timeline-marker current"></div>
+                              <div class="timeline-content">
+                                <h3>Sophomore Year</h3>
+                                <p>Circuit theory and digital logic design</p>
+                                <span class="timeline-date">2023-2024</span>
+                              </div>
+                            </div>
+                            <div class="timeline-item">
+                              <div class="timeline-marker"></div>
+                              <div class="timeline-content">
+                                <h3>Junior Year</h3>
+                                <p>Electronics, signals, and energy conversion</p>
+                                <span class="timeline-date">2024-2025</span>
+                              </div>
+                            </div>
+                            <div class="timeline-item">
+                              <div class="timeline-marker"></div>
+                              <div class="timeline-content">
+                                <h3>Senior Year</h3>
+                                <p>Advanced topics and capstone project</p>
+                                <span class="timeline-date">2025-2026</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Circuits Tab -->
+            <div id="circuits" class="tab-pane">
+                <div class="grid-container">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2>Circuit Designs</h2>
+                            <p class="card-description">Your electrical circuit designs</p>
+                        </div>
+                        <div class="card-content">
+                            <div class="search-container">
+                                <i class="fas fa-search"></i>
+                                <input type="search" placeholder="Search circuits...">
+                            </div>
+                            <div class="circuit-list">
+                                <div class="circuit-item" data-id="1">
+                                    <div class="circuit-title">AC Circuit Analysis</div>
+                                    <div class="circuit-description">Analysis of AC circuit with resistors, capacitors, and inductors</div>
+                                    <div class="item-actions">
+                                        <button class="edit-btn"><i class="fas fa-edit"></i></button>
+                                        <button class="delete-btn"><i class="fas fa-trash-alt"></i></button>
+                                    </div>
+                                </div>
+                                <div class="circuit-item" data-id="2">
+                                    <div class="circuit-title">Power Supply Design</div>
+                                    <div class="circuit-description">5V regulated power supply with overcurrent protection</div>
+                                    <div class="item-actions">
+                                        <button class="edit-btn"><i class="fas fa-edit"></i></button>
+                                        <button class="delete-btn"><i class="fas fa-trash-alt"></i></button>
+                                    </div>
+                                </div>
+                                <div class="circuit-item" data-id="3">
+                                    <div class="circuit-title">Microcontroller Interface</div>
+                                    <div class="circuit-description">Arduino interface with sensors and actuators</div>
+                                    <div class="item-actions">
+                                        <button class="edit-btn"><i class="fas fa-edit"></i></button>
+                                        <button class="delete-btn"><i class="fas fa-trash-alt"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <button class="btn btn-primary btn-full">
+                                <i class="fas fa-plus-circle"></i>
+                                Create New Circuit
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Electrical Tools -->
+                    <div class="card">
+                      <div class="card-header">
+                        <h2>Electrical Tools</h2>
+                        <p class="card-description">Tools for electrical engineering</p>
+                      </div>
+                      <div class="card-content">
+                        <div class="tools-grid">
+                          <button id="voltage-divider-btn" class="tool-btn" data-tool="calculator">
+                            <i class="fas fa-calculator"></i>
+                            <span>Voltage Divider</span>
+                          </button>
+                          <button id="resistor-color-code-btn" class="tool-btn" data-tool="resistor">
+                            <i class="fas fa-palette"></i>
+                            <span>Resistor Color Code</span>
+                          </button>
+                          <button id="ohms-law-btn" class="tool-btn" data-tool="ohms-law">
+                            <i class="fas fa-bolt"></i>
+                            <span>Ohm's Law</span>
+                          </button>
+                          <button id="led-resistor-btn" class="tool-btn" data-tool="led-resistor">
+                            <i class="fas fa-lightbulb"></i>
+                            <span>LED Resistor</span>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Vocabulary Tab -->
+            <div id="vocab" class="tab-pane">
+                <div class="grid-container">
+                    <div class="card span-2">
+                        <div class="card-header">
+                            <h2>Vocabulary Learning</h2>
+                            <p class="card-description">Learn and memorize technical terms</p>
+                        </div>
+                        <div class="card-content">
+                            <div class="vocab-controls">
+                                <select id="vocab-set-select" class="vocab-select">
+                                    <option value="electrical">Electrical Engineering Terms</option>
+                                    <option value="electronics">Electronics Terms</option>
+                                    <option value="power">Power Systems Terms</option>
+                                    <option value="signals">Signals & Systems Terms</option>
+                                </select>
+                                <div class="vocab-buttons">
+                                    <button id="study-btn" class="btn btn-primary">Study</button>
+                                    <button id="quiz-btn" class="btn btn-outline">Quiz</button>
+                                </div>
+                            </div>
+                            
+                            <div id="flashcard-container" class="flashcard-container">
+                                <div class="flashcard">
+                                    <div class="flashcard-inner">
+                                        <div class="flashcard-front">
+                                            <h3>Impedance</h3>
+                                        </div>
+                                        <div class="flashcard-back">
+                                            <p>The measure of opposition that a circuit presents to a current when a voltage is applied. It is a complex quantity consisting of resistance and reactance.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flashcard-navigation">
+                                    <button id="prev-card" class="btn btn-icon">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </button>
+                                    <span id="card-counter">1/20</span>
+                                    <button id="next-card" class="btn btn-icon">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div id="quiz-container" class="quiz-container">
+                                <!-- Quiz content will be dynamically generated -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h2>Study Sets</h2>
+                            <p class="card-description">Your vocabulary study sets</p>
+                        </div>
+                        <div class="card-content">
+                            <div class="study-set-list">
+                                <div class="study-set-item" data-id="1">
+                                    <div class="study-set-title">Electrical Engineering Terms</div>
+                                    <div class="study-set-meta">
+                                        <span>20 terms</span>
+                                        <span>Last studied: 2 days ago</span>
+                                    </div>
+                                    <div class="item-actions">
+                                        <button class="edit-btn"><i class="fas fa-edit"></i></button>
+                                        <button class="delete-btn"><i class="fas fa-trash-alt"></i></button>
+                                    </div>
+                                </div>
+                                <div class="study-set-item" data-id="2">
+                                    <div class="study-set-title">Electronics Terms</div>
+                                    <div class="study-set-meta">
+                                        <span>15 terms</span>
+                                        <span>Last studied: 1 week ago</span>
+                                    </div>
+                                    <div class="item-actions">
+                                        <button class="edit-btn"><i class="fas fa-edit"></i></button>
+                                        <button class="delete-btn"><i class="fas fa-trash-alt"></i></button>
+                                    </div>
+                                </div>
+                                <div class="study-set-item" data-id="3">
+                                    <div class="study-set-title">Power Systems Terms</div>
+                                    <div class="study-set-meta">
+                                        <span>18 terms</span>
+                                        <span>Last studied: 3 days ago</span>
+                                    </div>
+                                    <div class="item-actions">
+                                        <button class="edit-btn"><i class="fas fa-edit"></i></button>
+                                        <button class="delete-btn"><i class="fas fa-trash-alt"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <button id="create-set-btn" class="btn btn-primary btn-full">
+                                <i class="fas fa-plus-circle"></i>
+                                Create New Study Set
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Update Learning Progress section with dropdown -->
+                    <div class="card">
+                      <div class="card-header">
+                        <h2>Learning Progress</h2>
+                        <p class="card-description">Track your vocabulary learning progress</p>
+                      </div>
+                      <div class="card-content">
+                        <div class="progress-filter">
+                          <select id="progress-period">
+                            <option value="3days">Past 3 Days</option>
+                            <option value="week" selected>Past Week</option>
+                            <option value="all">All Time</option>
+                          </select>
+                        </div>
+                        <div class="vocab-stats">
+                          <div class="vocab-stat">
+                            <div id="terms-studied" class="vocab-stat-value">78</div>
+                            <div class="vocab-stat-label">Terms Learned</div>
+                          </div>
+                          <div class="vocab-stat">
+                            <div id="streak" class="vocab-stat-value">12</div>
+                            <div class="vocab-stat-label">Day Streak</div>
+                          </div>
+                          <div class="vocab-stat">
+                            <div id="accuracy" class="vocab-stat-value">85%</div>
+                            <div class="vocab-stat-label">Quiz Accuracy</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ChatGPT Tab -->
+            <div id="chatgpt" class="tab-pane">
+                <div class="card full-width">
+                    <div class="card-header">
+                        <h2>ChatGPT for Electrical Engineering</h2>
+                        <p class="card-description">Your electrical engineering AI assistant</p>
+                    </div>
+                    <div class="card-content">
+                        <div id="chat-container" class="chat-container">
+                            <div class="chat-message system">
+                                <div class="message-bubble">
+                                    Welcome to your electrical engineering assistant! How can I help you today?
+                                </div>
+                            </div>
+                            <!-- Chat messages will be added here by JavaScript -->
+                        </div>
+                        <form id="chat-form" class="chat-form">
+                            <input type="text" id="chat-input" placeholder="Ask about electrical engineering concepts..." required>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Edraw.ai Tab -->
+            <div id="edraw" class="tab-pane">
+              <div class="card full-width">
+                <div class="card-header">
+                  <h2>Edraw.ai Circuit Designer</h2>
+                  <p class="card-description">Generate and design circuit diagrams with AI</p>
+                </div>
+                <div class="card-content">
+                  <form id="edraw-form" class="edraw-form">
+                    <textarea id="edraw-prompt" placeholder="Describe the circuit diagram you want to generate..."></textarea>
+                    <button type="submit" id="edraw-submit" class="btn btn-primary">
+                      Generate Circuit
+                    </button>
+                  </form>
+                  <div id="edraw-result" class="edraw-result">
+                    <p class="placeholder-text">Generated circuit diagrams will appear here</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Course Modal -->
+    <div id="add-course-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Add New Course</h2>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="add-course-form">
+                    <div class="form-group">
+                        <label for="course-code">Course Code</label>
+                        <input type="text" id="course-code" placeholder="e.g., EE 401" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="course-title">Course Title</label>
+                        <input type="text" id="course-title" placeholder="e.g., Control Systems" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="course-credits">Credits</label>
+                        <input type="number" id="course-credits" min="1" max="6" value="3" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="course-status">Status</label>
+                        <select id="course-status" required>
+                            <option value="completed">Completed</option>
+                            <option value="current">Currently Taking</option>
+                            <option value="planned">Planned</option>
+                        </select>
+                    </div>
+                    <div id="grade-container" class="form-group">
+                        <label for="course-grade">Grade</label>
+                        <select id="course-grade">
+                            <option value="A">A</option>
+                            <option value="A-">A-</option>
+                            <option value="B+">B+</option>
+                            <option value="B">B</option>
+                            <option value="B-">B-</option>
+                            <option value="C+">C+</option>
+                            <option value="C">C</option>
+                            <option value="C-">C-</option>
+                            <option value="D">D</option>
+                            <option value="F">F</option>
+                        </select>
+                    </div>
+                    <div id="semester-container" class="form-group hidden">
+                        <label for="course-semester">Semester</label>
+                        <select id="course-semester">
+                            <option value="Next Semester">Next Semester</option>
+                            <option value="Next Year">Next Year</option>
+                            <option value="Future">Future</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline modal-cancel">Cancel</button>
+                <button class="btn btn-primary" id="save-course-btn">Save Course</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Create Study Set Modal -->
+    <div id="create-set-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Create New Study Set</h2>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="create-set-form">
+                    <div class="form-group">
+                        <label for="set-title">Study Set Title</label>
+                        <input type="text" id="set-title" placeholder="e.g., Digital Electronics Terms" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="set-description">Description (Optional)</label>
+                        <textarea id="set-description" placeholder="Brief description of this study set"></textarea>
+                    </div>
+                    <div class="vocab-terms">
+                        <h3>Terms</h3>
+                        <div class="vocab-term">
+                            <div class="form-group">
+                                <label>Term 1</label>
+                                <input type="text" class="term-input" placeholder="e.g., Capacitor" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Definition</label>
+                                <textarea class="definition-input" placeholder="e.g., A device used to store electrical energy in an electric field" required></textarea>
+                            </div>
+                        </div>
+                        <div class="vocab-term">
+                            <div class="form-group">
+                                <label>Term 2</label>
+                                <input type="text" class="term-input" placeholder="e.g., Inductor" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Definition</label>
+                                <textarea class="definition-input" placeholder="e.g., A device that stores energy in a magnetic field when electric current flows through it" required></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" id="add-term-btn" class="btn btn-outline btn-full">
+                        <i class="fas fa-plus-circle"></i>
+                        Add Another Term
+                    </button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline modal-cancel">Cancel</button>
+                <button class="btn btn-primary" id="save-set-btn">Create Study Set</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section Editor Modal -->
+    <div id="section-editor-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="section-editor-title">Edit Section</h2>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="section-editor-form">
+                    <input type="hidden" id="section-editor-id">
+                    <div class="form-group">
+                        <label for="section-editor-content">Content</label>
+                        <textarea id="section-editor-content" rows="10" class="full-width"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline modal-cancel">Cancel</button>
+                <button class="btn btn-primary" id="save-section-btn">Save Changes</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Create Circuit Modal -->
+    <div id="create-circuit-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Create Circuit</h2>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="create-circuit-form">
+                    <div class="form-group">
+                        <label for="circuit-title">Circuit Title</label>
+                        <input type="text" id="circuit-title" placeholder="e.g., Simple Amplifier" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="circuit-description">Description</label>
+                        <textarea id="circuit-description" placeholder="e.g., A basic amplifier circuit" required></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline modal-cancel">Cancel</button>
+                <button class="btn btn-primary" id="save-circuit-btn">Create Circuit</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
