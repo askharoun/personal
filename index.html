@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thomas Askharoun | Access</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="favicon.png">
+</head>
+<body class="dark-mode">
+    <div class="access-container">
+        <div class="access-card">
+            <div class="access-header">
+                <h1>askharoun.dev<sup>personal</sup></h1>
+                <p class="access-description">Enter access code to continue</p>
+            </div>
+            <div class="access-content">
+                <form id="access-form">
+                    <div class="form-group">
+                        <label for="access-code">Access Code</label>
+                        <input type="password" id="access-code" placeholder="Enter access code" required>
+                        <div id="error-message" class="error-message hidden">
+                            <i class="fas fa-exclamation-circle"></i>
+                            <span>Invalid access code. Please try again.</span>
+                        </div>
+                    </div>
+                    <div class="access-footer">
+                        <button type="submit" class="btn btn-primary btn-full">
+                            Continue
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
